@@ -1,0 +1,53 @@
+<html>
+
+<head>
+	<title>Open Urls</title>
+</head>
+
+<body>
+	<div style="text-align:center;">
+		<textarea id="urlContainer" autofocus rows="22" cols="80"> </textarea>
+		<div>
+			<input type="button" value="Run" onclick="openUrls()"/>
+		</div>
+	</div>
+	
+	<script type="text/javascript">
+	function trim(p_str)
+	{ 
+		return p_str.replace(/(^\s*)|(\s*$)/g, ""); 
+	}
+	function sleep(p_numberMillis)
+	{
+		var start = new Date().getTime();
+		while (true)
+		{
+			if (new Date().getTime() - start > p_numberMillis)
+			{
+				break;
+			}
+		}
+    }
+	function openUrls()
+	{
+		var l_urls = document.getElementById('urlContainer').value.split("\n");
+		for (var i = 0; i < l_urls.length; ++i)
+		{
+			trim(l_urls[i]);
+			if (l_urls[i] == "")
+			{
+				continue;
+			}
+			
+			var l_reg = /(http|https):\/\//;
+			if (!l_reg.test(l_urls[i]))
+			{
+				continue;
+			}
+			window.open(l_urls[i]);
+			sleep(500);
+		}
+	}
+	</script>
+</body>
+</html>
