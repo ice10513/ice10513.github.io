@@ -9,8 +9,10 @@
 		<textarea id="urlContainer" autofocus rows="22" cols="80"> </textarea>
 		<div>
 			<input type="button" value="Run" onclick="openUrls()"/>
+			&emsp;&emsp; IntervalTime: <input id="intervalTime" type="text" onkeyup="value=value.replace(/[^\d]/g,'') " ng-pattern="/[^a-zA-Z]/" value="1000" style="width:55px">ms
 		</div>
 	</div>
+
 	
 	<script type="text/javascript">
 	function trim(p_str)
@@ -45,7 +47,7 @@
 				continue;
 			}
 			window.open(l_urls[i]);
-			sleep(500);
+			sleep(parseInt(document.getElementById('intervalTime').value));
 		}
 	}
 	</script>
